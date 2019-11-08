@@ -1,2 +1,2 @@
 # Tetris
-A simple tetris game build on visual c#
+A simple Tetris game build with Visual C#
