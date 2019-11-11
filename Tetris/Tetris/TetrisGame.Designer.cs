@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.grid = new System.Windows.Forms.Panel();
             this.lblScoreFixed = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // grid
@@ -41,7 +40,7 @@
             this.grid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.grid.Location = new System.Drawing.Point(13, 26);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(349, 455);
+            this.grid.Size = new System.Drawing.Size(277, 452);
             this.grid.TabIndex = 0;
             // 
             // lblScoreFixed
@@ -63,15 +62,22 @@
             this.lblScore.TabIndex = 2;
             this.lblScore.Text = "0";
             // 
-            // timer
+            // button1
             // 
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            this.button1.Location = new System.Drawing.Point(215, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // TetrisGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 493);
+            this.ClientSize = new System.Drawing.Size(305, 491);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblScoreFixed);
             this.Controls.Add(this.grid);
@@ -88,6 +94,6 @@
         private System.Windows.Forms.Panel grid;
         private System.Windows.Forms.Label lblScoreFixed;
         private System.Windows.Forms.Label lblScore;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button button1;
     }
 }

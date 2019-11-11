@@ -13,7 +13,7 @@ namespace Tetris
 {
     public partial class TetrisGame : Form
     {
-        LeftL leftL;
+        Board leftL;
 
         public TetrisGame()
         {
@@ -22,24 +22,19 @@ namespace Tetris
 
         private void TetrisGame_Load(object sender, EventArgs e)
         {
-            createFigure();
-
-            timer = new Timer();
-            timer.Interval = (1000);
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Start();
+            
         }
 
         private void createFigure()
         {
-            leftL = new LeftL();
-            leftL.printPicture(grid.CreateGraphics());
+            leftL = new Board();
+            leftL.startPosition = leftL.startPosition + 10;
+            leftL.printBoard(grid.CreateGraphics());
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            leftL.startPosition = leftL.startPosition + 10;
-            leftL.printPicture(grid.CreateGraphics());
+            createFigure();
         }
     }
 }
