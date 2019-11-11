@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grid = new System.Windows.Forms.Panel();
             this.lblScoreFixed = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // grid
@@ -72,6 +74,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // TetrisGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,7 +89,6 @@
             this.Controls.Add(this.grid);
             this.Name = "TetrisGame";
             this.Text = "TetrisGame";
-            this.Load += new System.EventHandler(this.TetrisGame_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,5 +100,6 @@
         private System.Windows.Forms.Label lblScoreFixed;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer;
     }
 }

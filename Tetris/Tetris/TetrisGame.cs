@@ -8,21 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tetris.Figures;
+using Tetris.Resources;
 
 namespace Tetris
 {
     public partial class TetrisGame : Form
     {
-        Board leftL;
+        Coordinator coordinator;
 
         public TetrisGame()
         {
             InitializeComponent();
-        }
-
-        private void TetrisGame_Load(object sender, EventArgs e)
-        {
-            
         }
 
         private void createFigure()
@@ -35,6 +31,16 @@ namespace Tetris
         private void button1_Click(object sender, EventArgs e)
         {
             createFigure();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (coordinator == null)
+            {
+                coordinator = new Coordinator();
+            }
+
+            coordinator.playGame();
         }
     }
 }
