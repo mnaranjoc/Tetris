@@ -7,14 +7,11 @@ namespace Tetris.Resources
     class Coordinator
     {
         private Board board;
-        private IFigure figure;
-        private Graphics graphics { get; set; }
         private GameState gameState;
 
         public Coordinator(Graphics graphics)
         {
-            this.graphics = graphics;
-            board = new Board();
+            board = new Board(graphics);
         }
 
         public void playGame()
@@ -46,14 +43,22 @@ namespace Tetris.Resources
 
         private void createNewFigure()
         {
-            figure = RandomFigure.GetFigure();
-            board.fillValues
+            IFigure figure = RandomFigure.GetFigure();
+            figure.move(5, 0);
+            board.addFigure(figure);
+            board.printBoard();
         }
 
         private void moveFigure()
         {
-            figure.startPosition = figure.startPosition + 10;
-            figure.printMe(graphics);
+            IFigure figure = board.CurrentFigure;
+            Piece startPosition = figure.startPosition;
+
+            board.removeFigure(figure);            
+            startPosition.y++;
+            figure.move(0, 1);
+            board.addFigure(figure);
+            board.printBoard();
         }
     }
 }

@@ -6,28 +6,36 @@ namespace Tetris.Figures
 {
     class Board
     {
+        Graphics graphics;
         private int[,] board;
+        public IFigure CurrentFigure;
 
-        public Board()
+        public Board(Graphics graphics)
         {
-            board = new int[10,17];
+            this.board = new int[10, 17];
+            this.graphics = graphics;
         }
 
-        public bool addFigure(List<Piece> figureMap)
+        public IFigure getCurrentFigure()
         {
-            bool canAddfigure = this.tryAddFigure(figureMap);
+            return CurrentFigure;
+        }
+
+        public bool addFigure(IFigure figure)
+        {
+            bool canAddfigure = this.tryAddFigure(figure);
 
             if (canAddfigure)
             {
-                this.addFig(figureMap);
+                this.addFigure(figure.Map);
             }
 
             return canAddfigure;
         }
 
-        private bool tryAddFigure(List<Piece> figureMap)
+        private bool tryAddFigure(IFigure figure)
         {
-            foreach(var piece in figureMap)
+            foreach (var piece in figure.Map)
             {
                 if (board[piece.x, piece.y] == 1)
                 {
@@ -35,10 +43,12 @@ namespace Tetris.Figures
                 }
             }
 
+            CurrentFigure = figure;
+
             return true;
         }
 
-        private void addFig(List<Piece> figureMap)
+        private void addFigure(List<Piece> figureMap)
         {
             foreach (var piece in figureMap)
             {
@@ -46,17 +56,34 @@ namespace Tetris.Figures
             }
         }
 
-        public void printBoard(Graphics _graphics)
+        public void removeFigure(IFigure figure)
         {
+            foreach (var piece in figure.Map)
+            {
+                board[piece.x, piece.y] = 0;
+            }
+        }
+
+        public void printBoard()
+        {
+            graphics.Clear(Color.White);
+
             SolidBrush myBrush = new SolidBrush(Color.Blue);
             var rectangle = new Rectangle(0, 0, 0, 0);
 
-            for (int y = 0; y <= Constants.multiplier * 17; y = y + Constants.multiplier)
+            for (int y = 0; y < 17; y++)
             {
-                for (int x = 0; x <= Constants.multiplier * 10; x = x + Constants.multiplier)
+                for (int x = 0; x < 10; x++)
                 {
-                    rectangle = new Rectangle(x, y, Constants.multiplier, Constants.multiplier);
-                    _graphics.FillRectangle(myBrush, rectangle);
+                    if (board[x, y] == 1)
+                    {
+                        rectangle = new Rectangle(x * Constants.multiplier,
+                                                  y * Constants.multiplier,
+                                                  Constants.multiplier,
+                                                  Constants.multiplier);
+
+                        graphics.FillRectangle(myBrush, rectangle);
+                    }
                 }
             }
         }

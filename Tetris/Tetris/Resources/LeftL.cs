@@ -1,42 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using Tetris.Resources;
 
 namespace Tetris.Figures
 {
     class LeftL : IFigure
     {
-        public int startPosition { get; set; }
-        public List<Piece> figureMap { get; set; }
+        public List<Piece> Map { get; set; }
+
+        public Piece startPosition { get; set; }
 
         public LeftL()
         {
-            figureMap = new List<Piece>();
-            figureMap.Add(new Piece() { x = 1, y = 1 });
-            figureMap.Add(new Piece() { x = 1, y = 2 });
-            figureMap.Add(new Piece() { x = 1, y = 3 });
-            figureMap.Add(new Piece() { x = 1, y = 4 });
-            figureMap.Add(new Piece() { x = 2, y = 4 });
+            startPosition = new Piece() { x = 0, y = 0 };
+
+            Map = new List<Piece>();
+            Map.Add(new Piece() { x = 0, y = 0 });
+            Map.Add(new Piece() { x = 0, y = 1 });
+            Map.Add(new Piece() { x = 0, y = 2 });
+            Map.Add(new Piece() { x = 0, y = 3 });
+            Map.Add(new Piece() { x = 1, y = 3 });
         }
 
-        public void printMe(Graphics _graphics)
+        public void move(int x, int y)
         {
-            SolidBrush myBrush = new SolidBrush(Color.Blue);
-            var rectangle = new Rectangle(startPosition, startPosition, Constants.multiplier, Constants.multiplier);
-            _graphics.FillRectangle(myBrush, rectangle);
+            this.startPosition = startPosition;
+            List<Piece> tmpMap = new List<Piece>();            
 
-            rectangle = new Rectangle(startPosition, startPosition + Constants.multiplier, Constants.multiplier, Constants.multiplier);
-            _graphics.FillRectangle(myBrush, rectangle);
+            foreach (var piece in Map)
+            {
+                int newXPosi = piece.x;
+                int newYPosi = piece.y;
 
-            rectangle = new Rectangle(startPosition, startPosition + Constants.multiplier, Constants.multiplier, Constants.multiplier);
-            _graphics.FillRectangle(myBrush, rectangle);
+                newXPosi += x;
+                newYPosi += y;
 
-            rectangle = new Rectangle(startPosition, startPosition + Constants.multiplier, Constants.multiplier, Constants.multiplier);
-            _graphics.FillRectangle(myBrush, rectangle);
-            
-            rectangle = new Rectangle(startPosition + 10, startPosition + Constants.multiplier, Constants.multiplier, Constants.multiplier);
-            _graphics.FillRectangle(myBrush, rectangle);
+                tmpMap.Add(new Piece() { x = newXPosi, y = newYPosi });
+            }
+            Map = tmpMap;
         }
     }
 }

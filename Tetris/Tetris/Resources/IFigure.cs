@@ -5,9 +5,10 @@ namespace Tetris.Resources
 {
     public interface IFigure
     {
-        int startPosition { get; set; }
-        public List<Piece> figureMap { get; set; }
+        Piece startPosition { get; set; }
 
-        void printMe(Graphics _graphics);
+        List<Piece> Map { get; set; }
+
+        void move(int x, int y);
     }
 }
