@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using Tetris.Resources;
 
 namespace Tetris.Figures
@@ -12,26 +13,37 @@ namespace Tetris.Figures
             board = new int[10,17];
         }
 
-        public bool fillValues()
+        public bool addFigure(List<Piece> figureMap)
         {
-            bool trySetValues = this.trySetValues();
+            bool canAddfigure = this.tryAddFigure(figureMap);
 
-            if (trySetValues)
+            if (canAddfigure)
             {
-                this.setValues();
+                this.addFig(figureMap);
             }
 
-            return trySetValues;
+            return canAddfigure;
         }
 
-        private bool trySetValues()
+        private bool tryAddFigure(List<Piece> figureMap)
         {
+            foreach(var piece in figureMap)
+            {
+                if (board[piece.x, piece.y] == 1)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 
-        private void setValues()
+        private void addFig(List<Piece> figureMap)
         {
-
+            foreach (var piece in figureMap)
+            {
+                board[piece.x, piece.y] = 1;
+            }
         }
 
         public void printBoard(Graphics _graphics)

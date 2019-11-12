@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using Tetris.Figures;
 using static Tetris.Resources.Constants;
 
@@ -52,8 +47,7 @@ namespace Tetris.Resources
         private void createNewFigure()
         {
             figure = RandomFigure.GetFigure();
-            figure.startPosition = figure.startPosition + 10;
-            figure.printMe(graphics);
+            board.fillValues
         }
 
         private void moveFigure()
