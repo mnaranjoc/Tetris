@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Board.cs" />
+    <Compile Include="Resources\Constants.cs" />
     <Compile Include="Resources\Coordinator.cs" />
     <Compile Include="Resources\LeftL.cs" />
     <Compile Include="Program.cs" />
