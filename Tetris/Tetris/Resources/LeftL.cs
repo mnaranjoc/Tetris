@@ -1,32 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using Tetris.Resources;
 
 namespace Tetris.Figures
 {
-    class LeftL
+    class LeftL : IFigure
     {
         public int startPosition { get; set; }
 
-        public void printPicture(Graphics _graphics)
+        public void printMe(Graphics _graphics)
         {
             SolidBrush myBrush = new SolidBrush(Color.Blue);
-            var rectangle = new Rectangle(startPosition, startPosition, 10, 10);
+            var rectangle = new Rectangle(startPosition, startPosition, Constants.multiplier, Constants.multiplier);
             _graphics.FillRectangle(myBrush, rectangle);
 
-            rectangle = new Rectangle(startPosition, startPosition + 10, 10, 10);
+            rectangle = new Rectangle(startPosition, startPosition + Constants.multiplier, Constants.multiplier, Constants.multiplier);
             _graphics.FillRectangle(myBrush, rectangle);
 
-            rectangle = new Rectangle(startPosition, startPosition + 20, 10, 10);
+            rectangle = new Rectangle(startPosition, startPosition + Constants.multiplier, Constants.multiplier, Constants.multiplier);
             _graphics.FillRectangle(myBrush, rectangle);
 
-            rectangle = new Rectangle(startPosition, startPosition + 30, 10, 10);
+            rectangle = new Rectangle(startPosition, startPosition + Constants.multiplier, Constants.multiplier, Constants.multiplier);
             _graphics.FillRectangle(myBrush, rectangle);
             
-            rectangle = new Rectangle(startPosition + 10, startPosition + 30, 10, 10);
+            rectangle = new Rectangle(startPosition + 10, startPosition + Constants.multiplier, Constants.multiplier, Constants.multiplier);
             _graphics.FillRectangle(myBrush, rectangle);
         }
     }

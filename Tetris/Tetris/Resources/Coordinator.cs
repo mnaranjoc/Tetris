@@ -11,21 +11,15 @@ namespace Tetris.Resources
 {
     class Coordinator
     {
-        private static Coordinator coordinator;
+        private Board board;
+        private IFigure figure;
         private Graphics graphics { get; set; }
         private GameState gameState;
 
-        private Coordinator() { }
-
-        public static Coordinator GetCoordinator(Graphics graphics)
+        public Coordinator(Graphics graphics)
         {
-            if (coordinator == null)
-            {
-                coordinator = new Coordinator();
-                coordinator.graphics = graphics;
-            }
-
-            return coordinator;
+            this.graphics = graphics;
+            board = new Board();
         }
 
         public void playGame()
@@ -41,25 +35,31 @@ namespace Tetris.Resources
                     gameState = GameState.WaitingForUser;
                     break;
 
-                /*case GameState.WaitingForUser:
-                    this.redrawBoard();
+                case GameState.WaitingForUser:
+                    this.moveFigure();
                     gameState = GameState.EvaluatingLines;
                     break;
 
                 case GameState.EvaluatingLines:
-                    gameState = GameState.Finished;
+                    gameState = GameState.WaitingForUser;
                     break;
 
                 case GameState.Finished:
-                    break;*/
+                    break;
             }
         }
 
         private void createNewFigure()
         {
-            LeftL leftL = new LeftL();
-            leftL.startPosition = leftL.startPosition + 10;
-            leftL.printBoard();
+            figure = RandomFigure.GetFigure();
+            figure.startPosition = figure.startPosition + 10;
+            figure.printMe(graphics);
+        }
+
+        private void moveFigure()
+        {
+            figure.startPosition = figure.startPosition + 10;
+            figure.printMe(graphics);
         }
     }
 }

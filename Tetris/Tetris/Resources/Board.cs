@@ -1,16 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using Tetris.Resources;
 
 namespace Tetris.Figures
 {
     class Board
     {
-        public int startPosition { get; set; }
+        private int[,] board;
+
+        public Board()
+        {
+            board = new int[10,17];
+        }
+
+        public bool fillValues()
+        {
+            bool trySetValues = this.trySetValues();
+
+            if (trySetValues)
+            {
+                this.setValues();
+            }
+
+            return trySetValues;
+        }
+
+        private bool trySetValues()
+        {
+            return true;
+        }
+
+        private void setValues()
+        {
+
+        }
 
         public void printBoard(Graphics _graphics)
         {
